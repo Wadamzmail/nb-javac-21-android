@@ -563,6 +563,10 @@ public class JavacParser implements Parser {
             docComments.putComment(tree, dc);
         }
     }
+    
+    public DocCommentTable getDocComments() {
+        return docComments;
+    }
 
 /* -------- source positions ------- */
 

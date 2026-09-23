@@ -148,7 +148,7 @@ public class ClientCodeWrapper {
         return Collections.unmodifiableList(wrapped);
     }
 
-    JavaFileObject unwrap(JavaFileObject fo) {
+    public JavaFileObject unwrap(JavaFileObject fo) {
         return (fo instanceof WrappedJavaFileObject wrappedJavaFileObject) ?
                 ((JavaFileObject) wrappedJavaFileObject.clientFileObject) : fo;
     }

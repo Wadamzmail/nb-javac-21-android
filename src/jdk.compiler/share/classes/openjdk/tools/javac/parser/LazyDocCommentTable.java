@@ -42,7 +42,7 @@ import openjdk.tools.javac.util.DiagnosticSource;
  *  deletion without notice.</b>
  */
 public class LazyDocCommentTable implements DocCommentTable {
-    private static class Entry {
+    public static class Entry {
         final Comment comment;
         DCDocComment tree;
 
@@ -51,9 +51,9 @@ public class LazyDocCommentTable implements DocCommentTable {
         }
     }
 
-    private final ParserFactory fac;
-    private final DiagnosticSource diagSource;
-    private final Map<JCTree, Entry> table;
+    public final ParserFactory fac;
+    public final DiagnosticSource diagSource;
+    public final Map<JCTree, Entry> table;
 
     LazyDocCommentTable(ParserFactory fac) {
         this.fac = fac;
