@@ -160,9 +160,9 @@
     -->
 
     <property name="maven-snapshots-repository-id" value="oss.sonatype.org" />
-    <property name="maven-snapshots-repository-url" value="https://s01.oss.sonatype.org/content/repositories/snapshots/" />
+    <property name="maven-snapshots-repository-url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
     <property name="maven-staging-repository-id" value="oss.sonatype.org" />
-    <property name="maven-staging-repository-url" value="https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/" />
+    <property name="maven-staging-repository-url" value="https://oss.sonatype.org/service/local/staging/deploy/maven2/" />
 
     <target name="-prepare-maven-version" depends="clean,jar">
         <property name="maven.version" value="${nb-javac-ver}" />
@@ -201,7 +201,7 @@
 
     <target name="publish-to-maven-central" description="Build nb-javac-21-android and stage for maven central" depends="-prepare-maven-version,-prepare-maven">
         <exec executable="mvn" output="build/maven-publish.log" failonerror="true">
-            <arg value="org.apache.maven.plugins:maven-gpg-plugin:1.4:sign-and-deploy-file" />
+            <arg value="org.apache.maven.plugins:maven-gpg-plugin:2.7:sign-and-deploy-file" />
             <arg value="-Durl=${maven-staging-repository-url}" />
             <arg value="-DrepositoryId=${maven-staging-repository-id}" />
             <arg value="-DpomFile=build/pom-nb-javac.xml" />

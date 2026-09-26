@@ -39,6 +39,7 @@ module java.compiler {
     exports dev.mutwakil.androidide.javac.config;
     exports dev.mutwakil.androidide.zipfs2;
     exports dev.mutwakil.androidide.java.lang;
+    exports dev.mutwakil.androidide.java.util;
     exports javac.internal;
     exports javac.internal.jimage;
     exports javac.internal.jimage.decompressor;
@@ -59,6 +60,7 @@ module java.compiler {
 
     opens dev.mutwakil.androidide.javac.config to jdk.compiler,jdk.jdeps;
     opens dev.mutwakil.androidide.java.lang to jdk.compiler,jdk.jdeps;
+    opens dev.mutwakil.androidide.java.util to jdk.compiler,jdk.jdeps;
     opens javac.internal.javac to jdk.compiler,jdk.jdeps;
 }
 
