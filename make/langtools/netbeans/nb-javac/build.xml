@@ -120,7 +120,7 @@
     <target name="-pre-compile-test" depends="jar" />
 
     <target name="zip-nb-javac-sources" depends="init">
-        <zip basedir="../../../../" destfile="dist/nb-javac-${nb-javac-ver}-sources.zip">
+        <zip basedir="../../../../" destfile="dist/nb-javac-${nb-javac-ver}-android-sources.zip">
             <exclude name="**/build/" />
             <exclude name="**/dist/" />
             <exclude name="**/nbproject/private/" />
@@ -159,10 +159,10 @@
         released.
     -->
 
-    <property name="maven-snapshots-repository-id" value="oss.sonatype.org" />
-    <property name="maven-snapshots-repository-url" value="https://oss.sonatype.org/content/repositories/snapshots/" />
-    <property name="maven-staging-repository-id" value="oss.sonatype.org" />
-    <property name="maven-staging-repository-url" value="https://oss.sonatype.org/service/local/staging/deploy/maven2/" />
+    <property name="maven-snapshots-repository-id" value="central-portal-snapshots" />
+    <property name="maven-snapshots-repository-url" value="https://central.sonatype.com/repository/maven-snapshots/" />
+    <property name="maven-staging-repository-id" value="central-portal" />
+    <property name="maven-staging-repository-url" value="https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/" />
 
     <target name="-prepare-maven-version" depends="clean,jar">
         <property name="maven.version" value="${nb-javac-ver}" />
@@ -174,7 +174,7 @@
     <target name="-prepare-maven" depends="clean,jar,zip-nb-javac-sources">
         <fail message="Version must be specified!" unless="maven.version"/>
         <fail message="Specify -Dmaven.groupId=..." unless="maven.groupId"/>
-        <zip basedir="../../../../" destfile="dist/nb-javac-${nb-javac-ver}-doc.zip">
+        <zip basedir="../../../../" destfile="dist/nb-javac-${nb-javac-ver}-android-doc.zip">
             <include name="README.md" />
             <include name="SECURITY.md" />
             <include name="LICENSE.txt" />
@@ -192,7 +192,7 @@
             <arg value="-DrepositoryId=${maven-snapshots-repository-id}" />
             <arg value="-DpomFile=build/pom-nb-javac.xml" />
             <arg value="-Dfile=dist/nb-javac-${nb-javac-ver}-android.jar" />
-            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-sources.zip,dist/nb-javac-${nb-javac-ver}-doc.zip" />
+            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-android-sources.zip,dist/nb-javac-${nb-javac-ver}-android-doc.zip" />
             <arg value="-Dtypes=jar,jar" />
             <arg value="-Dclassifiers=sources,javadoc" />
             <arg value="-Dgpg.useagent=true" />
@@ -201,12 +201,12 @@
 
     <target name="publish-to-maven-central" description="Build nb-javac-21-android and stage for maven central" depends="-prepare-maven-version,-prepare-maven">
         <exec executable="mvn" output="build/maven-publish.log" failonerror="true">
-            <arg value="org.apache.maven.plugins:maven-gpg-plugin:2.7:sign-and-deploy-file" />
+            <arg value="org.apache.maven.plugins:maven-gpg-plugin:3.2.8:sign-and-deploy-file" />
             <arg value="-Durl=${maven-staging-repository-url}" />
             <arg value="-DrepositoryId=${maven-staging-repository-id}" />
             <arg value="-DpomFile=build/pom-nb-javac.xml" />
             <arg value="-Dfile=dist/nb-javac-${nb-javac-ver}-android.jar" />
-            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-sources.zip,dist/nb-javac-${nb-javac-ver}-doc.zip" />
+            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-android-sources.zip,dist/nb-javac-${nb-javac-ver}-android-doc.zip" />
             <arg value="-Dtypes=jar,jar" />
             <arg value="-Dclassifiers=sources,javadoc" />
             <arg value="-Dgpg.useagent=true" />
@@ -217,7 +217,7 @@
             <arg value="install:install-file" />
             <arg value="-DpomFile=build/pom-nb-javac.xml" />
             <arg value="-Dfile=dist/nb-javac-${nb-javac-ver}-android.jar" />
-            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-sources.zip,dist/nb-javac-${nb-javac-ver}-doc.zip" />
+            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-android-sources.zip,dist/nb-javac-${nb-javac-ver}-android-doc.zip" />
             <arg value="-Dtypes=jar,jar" />
             <arg value="-Dclassifiers=sources,javadoc" />
             <arg value="-Dgpg.useagent=true" />
@@ -228,7 +228,7 @@
             <arg value="install:install-file" />
             <arg value="-DpomFile=build/pom-nb-javac.xml" />
             <arg value="-Dfile=dist/nb-javac-${nb-javac-ver}-android.jar" />
-            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-sources.zip,dist/nb-javac-${nb-javac-ver}-doc.zip" />
+            <arg value="-Dfiles=dist/nb-javac-${nb-javac-ver}-android-sources.zip,dist/nb-javac-${nb-javac-ver}-android-doc.zip" />
             <arg value="-Dtypes=jar,jar" />
             <arg value="-Dclassifiers=sources,javadoc" />
             <arg value="-Dgpg.useagent=true" />
